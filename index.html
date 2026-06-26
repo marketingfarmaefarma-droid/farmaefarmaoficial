@@ -11,7 +11,7 @@ body{
   font-family:Arial, sans-serif;
   background:#ffffff;
   color:#222;
-  height:100vh;
+  min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -49,6 +49,9 @@ p{
 @keyframes spin{
   to{transform:rotate(360deg);}
 }
+.buttons{
+  margin-top:18px;
+}
 a{
   display:block;
   margin:12px auto;
@@ -67,22 +70,10 @@ small{
   margin-top:20px;
   color:#777;
 }
+.hidden{
+  display:none;
+}
 </style>
-
-<script>
-const playStore = "https://play.google.com/store/apps/details?id=br.com.febrafar.edelivery.farmaefarma";
-const appStore = "https://apps.apple.com/br/app/farma-farma-sua-farm%C3%A1cia/id1622436861";
-
-setTimeout(() => {
-  const ua = navigator.userAgent || navigator.vendor || window.opera;
-
-  if (/android/i.test(ua)) {
-    window.location.href = playStore;
-  } else if (/iPad|iPhone|iPod/.test(ua)) {
-    window.location.href = appStore;
-  }
-}, 900);
-</script>
 </head>
 
 <body>
@@ -91,17 +82,53 @@ setTimeout(() => {
 
     <h1>Baixe nosso aplicativo</h1>
 
-    <p>Você está sendo direcionado automaticamente para a loja correta do seu celular.</p>
+    <p id="message">Você está sendo direcionado automaticamente para a loja correta do seu celular.</p>
 
-    <div class="loader"></div>
+    <div class="loader" id="loader"></div>
 
-    <p>Caso não abra automaticamente, escolha abaixo:</p>
+    <p id="manualText">Caso não abra automaticamente, escolha abaixo:</p>
 
-    <a href="https://play.google.com/store/apps/details?id=br.com.febrafar.edelivery.farmaefarma">Baixar na Google Play</a>
+    <div class="buttons">
+      <a id="androidBtn" href="https://play.google.com/store/apps/details?id=br.com.febrafar.edelivery.farmaefarma">Baixar na Google Play</a>
 
-    <a class="apple" href="https://apps.apple.com/br/app/farma-farma-sua-farm%C3%A1cia/id1622436861">Baixar na App Store</a>
+      <a id="iosBtn" class="apple" href="https://apps.apple.com/br/app/farma-farma-sua-farm%C3%A1cia/id1622436861">Baixar na App Store</a>
+    </div>
 
     <small>Farma & Farma — sua saúde, nossa missão.</small>
   </div>
+
+<script>
+const playStore = "https://play.google.com/store/apps/details?id=br.com.febrafar.edelivery.farmaefarma";
+const appStore = "https://apps.apple.com/br/app/farma-farma-sua-farm%C3%A1cia/id1622436861";
+
+const ua = navigator.userAgent || navigator.vendor || window.opera;
+const isAndroid = /android/i.test(ua);
+const isIOS = /iPad|iPhone|iPod/.test(ua);
+
+const loader = document.getElementById("loader");
+const message = document.getElementById("message");
+const androidBtn = document.getElementById("androidBtn");
+const iosBtn = document.getElementById("iosBtn");
+
+if (isAndroid) {
+  iosBtn.classList.add("hidden");
+  setTimeout(() => {
+    window.location.href = playStore;
+  }, 700);
+} else if (isIOS) {
+  androidBtn.classList.add("hidden");
+  setTimeout(() => {
+    window.location.href = appStore;
+  }, 700);
+} else {
+  loader.style.display = "none";
+  message.innerText = "Escolha abaixo a loja do seu dispositivo.";
+}
+
+setTimeout(() => {
+  loader.style.display = "none";
+  message.innerText = "Se a loja não abriu automaticamente, toque no botão abaixo.";
+}, 3000);
+</script>
 </body>
 </html>
