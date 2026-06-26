@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baixe o App Farma & Farma</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#ffffff;
+  color:#222;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:24px;
+}
+.card{
+  max-width:430px;
+  width:100%;
+}
+.logo{
+  width:280px;
+  max-width:92%;
+  margin-bottom:28px;
+}
+h1{
+  color:#e30613;
+  font-size:26px;
+  margin-bottom:10px;
+}
+p{
+  font-size:17px;
+  color:#444;
+  line-height:1.5;
+}
+.loader{
+  width:42px;
+  height:42px;
+  border:5px solid #e5e5e5;
+  border-top:5px solid #64c7c9;
+  border-radius:50%;
+  margin:25px auto;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin{
+  to{transform:rotate(360deg);}
+}
+a{
+  display:block;
+  margin:12px auto;
+  padding:14px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:bold;
+  color:white;
+  background:#e30613;
+}
+a.apple{
+  background:#64c7c9;
+}
+small{
+  display:block;
+  margin-top:20px;
+  color:#777;
+}
+</style>
+
+<script>
+const playStore = "https://play.google.com/store/apps/details?id=br.com.febrafar.edelivery.farmaefarma";
+const appStore = "https://apps.apple.com/br/app/farma-farma-sua-farm%C3%A1cia/id1622436861";
+
+setTimeout(() => {
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+
+  if (/android/i.test(ua)) {
+    window.location.href = playStore;
+  } else if (/iPad|iPhone|iPod/.test(ua)) {
+    window.location.href = appStore;
+  }
+}, 900);
+</script>
+</head>
+
+<body>
+  <div class="card">
+    <img class="logo" src="Farma e Farma - Marca_Marca horizontal.png" alt="Farma & Farma">
+
+    <h1>Baixe nosso aplicativo</h1>
+
+    <p>Você está sendo direcionado automaticamente para a loja correta do seu celular.</p>
+
+    <div class="loader"></div>
+
+    <p>Caso não abra automaticamente, escolha abaixo:</p>
+
+    <a href="https://play.google.com/store/apps/details?id=br.com.febrafar.edelivery.farmaefarma">Baixar na Google Play</a>
+
+    <a class="apple" href="https://apps.apple.com/br/app/farma-farma-sua-farm%C3%A1cia/id1622436861">Baixar na App Store</a>
+
+    <small>Farma & Farma — sua saúde, nossa missão.</small>
+  </div>
+</body>
+</html>
